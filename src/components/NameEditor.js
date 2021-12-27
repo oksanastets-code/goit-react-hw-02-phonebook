@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Form, Label, InputField, AddButton } from './NameEditor.styled';
 class NameEditor extends Component {
   state = {
     name: '',
@@ -17,10 +18,10 @@ class NameEditor extends Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="">
+        <Form onSubmit={this.handleSubmit}>
+          <Label htmlFor="">
             Name
-            <input
+            <InputField
               type="text"
               name="name"
               value={this.state.name}
@@ -29,10 +30,10 @@ class NameEditor extends Component {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
             />
-          </label>
-          <label htmlFor="">
+          </Label>
+          <Label htmlFor="">
             Number
-            <input
+            <InputField
               type="tel"
               name="number"
               value={this.state.number}
@@ -41,9 +42,9 @@ class NameEditor extends Component {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
             />
-          </label>
-          <button type="submit">Add contact</button>
-        </form>
+          </Label>
+          <AddButton type="submit">Add contact</AddButton>
+        </Form>
       </>
     );
   }

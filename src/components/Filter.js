@@ -1,7 +1,9 @@
+import {} from './Filter.styled';
+import { FilterLabel, FilterInputField } from './Filter.styled';
 const Filter = ({ value, onChange }) => (
-  <label htmlFor="">
+  <FilterLabel htmlFor="">
     Find contacts by name
-    <input
+    <FilterInputField
       type="text"
       name="filter"
       value={value}
@@ -10,6 +12,6 @@ const Filter = ({ value, onChange }) => (
       title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
       required
     />
-  </label>
+  </FilterLabel>
 );
 export default Filter;

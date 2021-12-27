@@ -5,6 +5,7 @@ import initialContacts from './contacts.json';
 import NameEditor from './components/NameEditor';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
+import { Container } from './App.styled';
 class App extends Component {
   state = {
     contacts: initialContacts,
@@ -44,14 +45,14 @@ class App extends Component {
   render() {
     const foundedContacts = this.getFoundedContacts();
     return (
-      <>
+      <Container>
         <Toaster />
         <h1>Phonebook</h1>
         <NameEditor onSubmit={this.addContact} />
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.changeFilter} />
         <ContactList contacts={foundedContacts} onDeleteContact={this.deleteContact} />
-      </>
+      </Container>
     );
   }
 }
