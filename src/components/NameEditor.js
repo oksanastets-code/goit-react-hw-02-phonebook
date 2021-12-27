@@ -17,7 +17,6 @@ class NameEditor extends Component {
   render() {
     return (
       <>
-        <h3>Phonebook</h3>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="">
             Name

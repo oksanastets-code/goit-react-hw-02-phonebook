@@ -1,14 +1,14 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import toast, { Toaster } from 'react-hot-toast';
+import initialContacts from './contacts.json';
 import NameEditor from './components/NameEditor';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: initialContacts,
     filter: '',
-    name: '',
-    number: '',
   };
   addContact = (name, number) => {
     const contact = {
@@ -16,9 +16,20 @@ class App extends Component {
       name,
       number,
     };
-    console.log(contact);
+    if (this.state.contacts.find(contact => contact.name === name)) {
+      const notify = 'This contact is already on list';
+      toast.error(notify);
+      return;
+    }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
+    }));
+    toast.success('Contact added!');
+    return;
+  };
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
   changeFilter = e => {
@@ -34,9 +45,12 @@ class App extends Component {
     const foundedContacts = this.getFoundedContacts();
     return (
       <>
+        <Toaster />
+        <h1>Phonebook</h1>
         <NameEditor onSubmit={this.addContact} />
+        <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.changeFilter} />
-        <ContactList contacts={foundedContacts} />
+        <ContactList contacts={foundedContacts} onDeleteContact={this.deleteContact} />
       </>
     );
   }
