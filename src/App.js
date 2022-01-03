@@ -18,7 +18,7 @@ class App extends Component {
       number,
     };
     if (this.state.contacts.find(contact => contact.name === name)) {
-      const notify = 'This contact is already on list';
+      const notify = `${name} is already on list`;
       toast.error(notify);
       return;
     }
